@@ -1,0 +1,190 @@
+/* ===== Contact Section ===== */
+/* 
+   Contact page and section styles.
+*/
+
+.contact {
+    padding: var(--spacing-2xl) 0;
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* ===== Contact Info ===== */
+.contact-info .section-label {
+    color: var(--color-secondary);
+}
+
+.contact-info h2 {
+    color: var(--color-white);
+    margin-bottom: var(--spacing-sm);
+}
+
+.contact-info > p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 40px;
+}
+
+/* ===== Contact Details ===== */
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: 40px;
+}
+
+.contact-item {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.contact-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201, 169, 98, 0.15);
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.contact-icon svg {
+    width: 22px;
+    height: 22px;
+    color: var(--color-secondary);
+}
+
+.contact-item strong {
+    display: block;
+    color: var(--color-white);
+    margin-bottom: 4px;
+}
+
+.contact-item p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ===== Office Hours ===== */
+.office-hours h4 {
+    color: var(--color-white);
+    margin-bottom: 12px;
+}
+
+.office-hours p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* ===== Contact Form ===== */
+.contact-form-wrapper {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.contact-form h3 {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.contact-form .btn {
+    margin-top: var(--spacing-xs);
+}
+
+/* ===== Contact Page Specific ===== */
+.contact-page {
+    background: var(--color-cream);
+}
+
+.contact-page .contact {
+    background: transparent;
+    padding-top: 0;
+}
+
+.contact-page .contact-grid {
+    background: var(--color-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.contact-page .contact-info h2,
+.contact-page .contact-info .section-label {
+    color: var(--color-dark);
+}
+
+.contact-page .contact-info > p {
+    color: var(--color-text-light);
+}
+
+.contact-page .contact-item strong {
+    color: var(--color-dark);
+}
+
+.contact-page .contact-item p {
+    color: var(--color-text-light);
+}
+
+.contact-page .office-hours h4 {
+    color: var(--color-dark);
+}
+
+.contact-page .office-hours p {
+    color: var(--color-text-light);
+}
+
+.contact-page .contact-form-wrapper {
+    background: var(--color-cream);
+    box-shadow: none;
+}
+
+/* ===== Map Container ===== */
+.map-container {
+    margin-top: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 400px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ===== CTA Section ===== */
+.cta-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-secondary);
+    text-align: center;
+}
+
+.cta-section h2 {
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.cta-section p {
+    color: var(--color-dark);
+    opacity: 0.8;
+    margin-bottom: var(--spacing-md);
+}
+
+.cta-section .btn {
+    background: var(--color-dark);
+    color: var(--color-white);
+}
+
+.cta-section .btn:hover {
+    background: var(--color-primary);
+}

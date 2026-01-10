@@ -1,0 +1,203 @@
+/* ===== Services Section ===== */
+/* 
+   Services page and section styles.
+*/
+
+.services {
+    padding: var(--spacing-2xl) 0;
+    background: var(--color-cream);
+}
+
+/* ===== Services Grid ===== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+/* ===== Service Card ===== */
+.service-card {
+    position: relative;
+    background: var(--color-white);
+    padding: 40px 32px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.service-card.featured {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.service-card.featured h3,
+.service-card.featured p,
+.service-card.featured li {
+    color: var(--color-white);
+}
+
+.service-card.featured .service-icon svg {
+    color: var(--color-secondary);
+}
+
+.service-card.featured .service-features {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Featured Badge ===== */
+.featured-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--color-secondary);
+    color: var(--color-dark);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* ===== Service Icon ===== */
+.service-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201, 169, 98, 0.1);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.service-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--color-secondary);
+}
+
+/* ===== Service Content ===== */
+.service-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+}
+
+.service-card > p {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* ===== Service Features List ===== */
+.service-features {
+    list-style: none;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.service-features li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin-bottom: 8px;
+}
+
+.service-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+    font-weight: 600;
+}
+
+/* ===== Service Detail (for individual service pages) ===== */
+.service-detail {
+    padding: var(--spacing-2xl) 0;
+    background: var(--color-white);
+}
+
+.service-detail-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-xl);
+}
+
+.service-detail-content h2 {
+    margin-bottom: var(--spacing-md);
+}
+
+.service-detail-content p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.service-detail-content ul {
+    margin: var(--spacing-md) 0;
+    padding-left: var(--spacing-md);
+}
+
+.service-detail-content li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text);
+}
+
+.service-detail-content li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+}
+
+/* ===== Service Sidebar ===== */
+.service-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+.service-sidebar-card {
+    background: var(--color-cream);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.service-sidebar-card h4 {
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.service-list-nav {
+    list-style: none;
+}
+
+.service-list-nav li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.service-list-nav a {
+    display: block;
+    padding: 12px var(--spacing-sm);
+    color: var(--color-text);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.service-list-nav a:hover,
+.service-list-nav a.active {
+    background: var(--color-white);
+    color: var(--color-primary);
+}
+
+.service-list-nav a.active {
+    border-left: 3px solid var(--color-secondary);
+}

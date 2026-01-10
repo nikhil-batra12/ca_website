@@ -1,0 +1,155 @@
+/* ===== Why Choose Us Section ===== */
+/* 
+   Why us / testimonials section styles.
+*/
+
+.why-us {
+    padding: var(--spacing-2xl) 0;
+    background: var(--color-white);
+}
+
+.why-us-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+/* ===== Why Us Content ===== */
+.why-us-content h2 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.why-us-content > p {
+    color: var(--color-text-light);
+    margin-bottom: 40px;
+}
+
+/* ===== Features List ===== */
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.feature-item {
+    display: flex;
+    gap: 20px;
+}
+
+.feature-number {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    line-height: 1;
+}
+
+.feature-text h4 {
+    margin-bottom: 4px;
+}
+
+.feature-text p {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+}
+
+/* ===== Visual Card / Testimonial ===== */
+.visual-card {
+    background: var(--color-cream);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    position: relative;
+}
+
+.quote-mark {
+    font-family: var(--font-heading);
+    font-size: 6rem;
+    color: var(--color-secondary);
+    opacity: 0.3;
+    line-height: 0.5;
+    margin-bottom: 20px;
+}
+
+.testimonial {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--color-text);
+    margin-bottom: 32px;
+    line-height: 1.8;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.author-avatar {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    border-radius: 50%;
+}
+
+.author-info strong {
+    display: block;
+    color: var(--color-dark);
+}
+
+.author-info span {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+}
+
+/* ===== Testimonials Grid (for testimonials page) ===== */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+.testimonial-card {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-card .quote-mark {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.testimonial-card .testimonial {
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* ===== Stats Section ===== */
+.stats-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-primary);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    text-align: center;
+}
+
+.stats-grid .stat-number {
+    font-size: 3rem;
+}
+
+.stats-grid .stat-label {
+    color: rgba(255, 255, 255, 0.7);
+}

@@ -1,0 +1,214 @@
+/* ===== Responsive Styles ===== */
+/* 
+   Media queries for all screen sizes.
+*/
+
+/* ===== Tablet (1024px and below) ===== */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .about-grid,
+    .why-us-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .about-image {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .service-detail-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-sidebar {
+        position: static;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .mission-vision-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== Mobile (768px and below) ===== */
+@media (max-width: 768px) {
+    /* Navigation */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--color-dark);
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--spacing-md);
+        transition: var(--transition);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-toggle {
+        display: flex;
+        z-index: 1001;
+    }
+    
+    /* Hero */
+    .hero-stats {
+        flex-wrap: wrap;
+        gap: 32px;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+    }
+    
+    /* Services */
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* About */
+    .credentials {
+        flex-direction: column;
+    }
+    
+    /* Contact */
+    .contact-form-wrapper {
+        padding: 32px var(--spacing-md);
+    }
+    
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-brand .logo {
+        justify-content: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        text-align: center;
+    }
+    
+    /* Team */
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Stats */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+}
+
+/* ===== Small Mobile (480px and below) ===== */
+@media (max-width: 480px) {
+    /* Spacing adjustments */
+    .hero {
+        padding: 100px 0 60px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .section-header,
+    .about,
+    .services,
+    .why-us,
+    .contact {
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .visual-card {
+        padding: 32px var(--spacing-md);
+    }
+    
+    .page-header {
+        padding: 120px 0 60px;
+    }
+    
+    /* Cards */
+    .service-card {
+        padding: 32px var(--spacing-md);
+    }
+    
+    /* Typography */
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    /* Form */
+    .contact-form-wrapper {
+        padding: var(--spacing-md);
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 14px var(--spacing-sm);
+    }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+    .navbar,
+    .footer,
+    .scroll-indicator,
+    .contact-form-wrapper {
+        display: none;
+    }
+    
+    .hero {
+        min-height: auto;
+        padding: 40px 0;
+    }
+    
+    .hero-bg {
+        background: var(--color-white) !important;
+    }
+    
+    .hero h1,
+    .hero-subtitle {
+        color: var(--color-dark) !important;
+    }
+    
+    section {
+        page-break-inside: avoid;
+    }
+}
