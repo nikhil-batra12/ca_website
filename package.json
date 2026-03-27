@@ -1,0 +1,14 @@
+{
+  "name": "ca-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test --headed",
+    "test:gst": "playwright test gst_automation.spec.js --headed",
+    "test:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "pdf-parse": "^1.1.1"
+  }
+}
