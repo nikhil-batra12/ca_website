@@ -41,8 +41,8 @@ const GST_CONFIG = {
 };
 
 const Credentials = {
-  username: "ilesha2024",
-  password: "Hkc@2026",
+  username: "",
+  password: "",
 };
 
 test.describe("GST Portal Automation", () => {
@@ -321,105 +321,84 @@ test.describe("GST Portal Automation", () => {
     });
 
     // Set up user-specific downloads directory
-    const downloadsDir = path.join(process.cwd(), "downloads", Credentials.username);
-    fs.mkdirSync(downloadsDir, { recursive: true });
-    console.log(`📁 Downloads will be saved to: downloads/${Credentials.username}/`);
-
-    // Steps 7+: Read available quarters dynamically, then loop over each quarter's months
-
-    // Select Financial Year once to populate the quarter dropdown
-    const finYrInitial = page.locator('select[name="fin"]').first();
-    await finYrInitial.waitFor({ state: "visible", timeout: GST_CONFIG.timeout });
-    await finYrInitial.selectOption({ label: "2025-26" });
-    console.log("✅ Selected Financial Year: 2025-26");
-    await page.waitForTimeout(1000);
-
-    // Read all available quarters from the dropdown
-    await page.waitForFunction(
-      () => document.querySelector('select[name="quarter"]')?.options.length > 1,
-      { timeout: GST_CONFIG.timeout },
+    const downloadsDir = path.join(
+      process.cwd(),
+      "downloads",
+      Credentials.username,
     );
-    const availableQuarters = await page.$$eval('select[name="quarter"] option', (opts) =>
-      opts.map((o) => o.label).filter((l) => l.trim() !== ""),
+    fs.mkdirSync(downloadsDir, { recursive: true });
+    console.log(
+      `📁 Downloads will be saved to: downloads/${Credentials.username}/`,
+    );
+
+    // Steps 7+: Loop over available quarters and their months
+
+    // Helper: select dropdown and poll until a dependent dropdown populates
+    const selectDropdown = async (selector, label, waitForSelector = null) => {
+      const el = page.locator(selector).first();
+      await el.waitFor({ state: "visible", timeout: GST_CONFIG.timeout });
+      await el.selectOption({ label });
+      if (waitForSelector) {
+        await page.waitForFunction(
+          (sel) => (document.querySelector(sel)?.options.length ?? 0) >= 1,
+          waitForSelector,
+          { timeout: GST_CONFIG.timeout },
+        );
+      }
+      await page.waitForTimeout(1000);
+    };
+
+    // Select FY to populate quarters, read what's available
+    await selectDropdown('select[name="fin"]', "2025-26", 'select[name="quarter"]');
+    const availableQuarters = await page.$$eval(
+      'select[name="quarter"] option',
+      (opts) => opts.map((o) => o.label).filter((l) => l.trim() !== ""),
     );
     console.log(`📋 Available quarters: ${availableQuarters.join(", ")}`);
 
     for (const quarter of availableQuarters) {
       console.log(`\n📋 ===== Quarter: ${quarter} =====`);
 
-      // Select Financial Year (re-select on each quarter iteration after returning to dashboard)
-      const finYr = page.locator('select[name="fin"]').first();
-      await finYr.waitFor({ state: "visible", timeout: GST_CONFIG.timeout });
-      await finYr.selectOption({ label: "2025-26" });
-      await page.waitForTimeout(1000);
+      // Select FY → Quarter, wait for months to appear
+      await selectDropdown('select[name="fin"]', "2025-26", 'select[name="quarter"]');
+      await selectDropdown('select[name="quarter"]', quarter, 'select[name="mon"]');
 
-      // Select the quarter
-      const qDropdown = page.locator('select[name="quarter"]').first();
-      await page.waitForFunction(
-        () => document.querySelector('select[name="quarter"]')?.options.length > 1,
-        { timeout: GST_CONFIG.timeout },
-      );
-      await qDropdown.selectOption({ label: quarter });
-      console.log(`✅ Selected Quarter: ${quarter}`);
-      await page.waitForTimeout(1000);
-
-      // Read available months for this quarter
-      await page.waitForFunction(
-        () => document.querySelector('select[name="mon"]')?.options.length > 0,
-        { timeout: GST_CONFIG.timeout },
-      );
-      const availableMonths = await page.$$eval('select[name="mon"] option', (opts) =>
-        opts.map((o) => o.label).filter((l) => l.trim() !== ""),
+      // Read months actually available for this quarter
+      const availableMonths = await page.$$eval(
+        'select[name="mon"] option',
+        (opts) => opts.map((o) => o.label).filter((l) => l.trim() !== ""),
       );
       console.log(`📋 Available months for ${quarter}: ${availableMonths.join(", ")}`);
+
+      if (availableMonths.length === 0) {
+        console.log(`⏭️ No months available for ${quarter} — skipping`);
+        continue;
+      }
 
       for (const month of availableMonths) {
         console.log(`\n📋 ===== Processing: ${quarter} - ${month} =====`);
 
         try {
-          // Re-select financial year and quarter before each month (after returning from download)
-          const finYrLoop = page.locator('select[name="fin"]').first();
-          await finYrLoop.waitFor({ state: "visible", timeout: GST_CONFIG.timeout });
-          await finYrLoop.selectOption({ label: "2025-26" });
-          await page.waitForTimeout(1000);
-
-          const qLoop = page.locator('select[name="quarter"]').first();
-          await page.waitForFunction(
-            () => document.querySelector('select[name="quarter"]')?.options.length > 1,
-            { timeout: GST_CONFIG.timeout },
-          );
-          await qLoop.selectOption({ label: quarter });
-          await page.waitForTimeout(1000);
-
-          // Select Month
-          const mDropdown = page.locator('select[name="mon"]').first();
-          await page.waitForFunction(
-            () => document.querySelector('select[name="mon"]')?.options.length > 0,
-            { timeout: GST_CONFIG.timeout },
-          );
-
-          // Skip if month no longer in dropdown
-          const monthExists = await page.$eval(
-            'select[name="mon"]',
-            (sel, m) => Array.from(sel.options).some((o) => o.label === m),
-            month,
-          );
-          if (!monthExists) {
-            console.log(`⏭️ Month "${month}" not found in dropdown — skipping`);
-            continue;
-          }
-
-          await mDropdown.selectOption({ label: month });
-          console.log(`✅ Selected Month: ${month}`);
-          await page.waitForTimeout(1000);
+          // Re-select FY → Quarter → Month after each return to dashboard
+          await selectDropdown('select[name="fin"]', "2025-26", 'select[name="quarter"]');
+          await selectDropdown('select[name="quarter"]', quarter, 'select[name="mon"]');
+          await selectDropdown('select[name="mon"]', month);
+          console.log(`✅ Selected: ${quarter} - ${month}`);
 
           // Click Search
-          const srchBtn = page.locator('button.btn.btn-primary.srchbtn[type="submit"]').first();
-          await srchBtn.waitFor({ state: "visible", timeout: GST_CONFIG.timeout });
+          const srchBtn = page
+            .locator('button.btn.btn-primary.srchbtn[type="submit"]')
+            .first();
+          await srchBtn.waitFor({
+            state: "visible",
+            timeout: GST_CONFIG.timeout,
+          });
           await srchBtn.scrollIntoViewIfNeeded();
           await srchBtn.click({ timeout: 10000 });
           console.log("✅ Clicked Search");
-          await page.waitForLoadState("networkidle", { timeout: GST_CONFIG.timeout });
+          await page.waitForLoadState("networkidle", {
+            timeout: GST_CONFIG.timeout,
+          });
           await page.waitForTimeout(2000);
 
           // Download GSTR-3B PDF before proceeding with GSTR-1
@@ -427,10 +406,15 @@ test.describe("GST Portal Automation", () => {
           const gstr3bDownloadBtn = page
             .locator('button[data-ng-click="downloadGSTR3Bpdf()"]')
             .first();
-          const gstr3bVisible = await gstr3bDownloadBtn.isVisible().catch(() => false);
+          const gstr3bVisible = await gstr3bDownloadBtn
+            .isVisible()
+            .catch(() => false);
 
           if (gstr3bVisible) {
-            const gstr3bFileName = `GSTR3B_${quarter.replace(/\s*\(.*\)/, "").trim().replace(/\s+/g, "_")}_${month}_2025-26.pdf`;
+            const gstr3bFileName = `GSTR3B_${quarter
+              .replace(/\s*\(.*\)/, "")
+              .trim()
+              .replace(/\s+/g, "_")}_${month}_2025-26.pdf`;
             const gstr3bSavePath = path.join(downloadsDir, gstr3bFileName);
             await gstr3bDownloadBtn.scrollIntoViewIfNeeded();
             const [gstr3bDownload] = await Promise.all([
@@ -446,37 +430,57 @@ test.describe("GST Portal Automation", () => {
 
           // Wait for GSTR1 tile to appear
           const tile = page
-            .locator('p.inv:has-text("Details of outward supplies of goods or services")')
+            .locator(
+              'p.inv:has-text("Details of outward supplies of goods or services")',
+            )
             .first();
           await tile.waitFor({ state: "visible", timeout: GST_CONFIG.timeout });
           console.log("✅ GSTR1 tile visible");
 
           // Click VIEW
           const vBtn = page
-            .locator('div[data-ng-if="x.return_ty==\'GSTR1\'"] button:has-text("VIEW")')
+            .locator(
+              'div[data-ng-if="x.return_ty==\'GSTR1\'"] button:has-text("VIEW")',
+            )
             .first();
           await vBtn.waitFor({ state: "visible", timeout: GST_CONFIG.timeout });
           await vBtn.scrollIntoViewIfNeeded();
           await vBtn.click({ timeout: 10000 });
           console.log("✅ Clicked VIEW");
-          await page.waitForLoadState("networkidle", { timeout: GST_CONFIG.timeout });
+          await page.waitForLoadState("networkidle", {
+            timeout: GST_CONFIG.timeout,
+          });
           await page.waitForTimeout(2000);
 
-          const fileName = `GSTR1_${quarter.replace(/\s*\(.*\)/, "").trim().replace(/\s+/g, "_")}_${month}_2025-26.pdf`;
+          const fileName = `GSTR1_${quarter
+            .replace(/\s*\(.*\)/, "")
+            .trim()
+            .replace(/\s+/g, "_")}_${month}_2025-26.pdf`;
           const savePath = path.join(downloadsDir, fileName);
 
           // Two branches after VIEW:
           // Branch A: NIL return — "DOWNLOAD FILED (PDF)" button is directly visible
           // Branch B: Regular return — "VIEW SUMMARY" button appears first, then "DOWNLOAD (PDF)"
-          const nilDownloadBtn = page.locator('button[data-ng-click="generateNILGstr1Pdf()"]').first();
-          const viewSummaryBtn = page.locator('button span:has-text("VIEW SUMMARY")').locator('xpath=..').first();
+          const nilDownloadBtn = page
+            .locator('button[data-ng-click="generateNILGstr1Pdf()"]')
+            .first();
+          const viewSummaryBtn = page
+            .locator('button span:has-text("VIEW SUMMARY")')
+            .locator("xpath=..")
+            .first();
 
-          const isNilDownload = await nilDownloadBtn.isVisible().catch(() => false);
-          const isViewSummary = await viewSummaryBtn.isVisible().catch(() => false);
+          const isNilDownload = await nilDownloadBtn
+            .isVisible()
+            .catch(() => false);
+          const isViewSummary = await viewSummaryBtn
+            .isVisible()
+            .catch(() => false);
 
           if (isNilDownload) {
             // Branch A: NIL return — download directly
-            console.log("📋 Branch A: NIL return — clicking Download Filed (PDF)...");
+            console.log(
+              "📋 Branch A: NIL return — clicking Download Filed (PDF)...",
+            );
             await nilDownloadBtn.scrollIntoViewIfNeeded();
             const [download] = await Promise.all([
               page.waitForEvent("download", { timeout: GST_CONFIG.timeout }),
@@ -484,22 +488,30 @@ test.describe("GST Portal Automation", () => {
             ]);
             await download.saveAs(savePath);
             console.log(`✅ PDF saved: downloads/${fileName}`);
-
           } else if (isViewSummary) {
             // Branch B: Regular return — click VIEW SUMMARY first
-            console.log("📋 Branch B: Regular return — clicking View Summary...");
+            console.log(
+              "📋 Branch B: Regular return — clicking View Summary...",
+            );
             await viewSummaryBtn.scrollIntoViewIfNeeded();
             await viewSummaryBtn.click({ timeout: 10000 });
             console.log("✅ Clicked View Summary");
-            await page.waitForLoadState("networkidle", { timeout: GST_CONFIG.timeout });
+            await page.waitForLoadState("networkidle", {
+              timeout: GST_CONFIG.timeout,
+            });
             await page.waitForTimeout(2000);
 
             // Now click DOWNLOAD (PDF)
             const summaryDownloadBtn = page
-              .locator('button[data-ng-click="genratepdfNew()"] span:has-text("DOWNLOAD (PDF)")')
+              .locator(
+                'button[data-ng-click="genratepdfNew()"] span:has-text("DOWNLOAD (PDF)")',
+              )
               .locator("xpath=..")
               .first();
-            await summaryDownloadBtn.waitFor({ state: "visible", timeout: GST_CONFIG.timeout });
+            await summaryDownloadBtn.waitFor({
+              state: "visible",
+              timeout: GST_CONFIG.timeout,
+            });
             await summaryDownloadBtn.scrollIntoViewIfNeeded();
             const [download] = await Promise.all([
               page.waitForEvent("download", { timeout: GST_CONFIG.timeout }),
@@ -507,9 +519,10 @@ test.describe("GST Portal Automation", () => {
             ]);
             await download.saveAs(savePath);
             console.log(`✅ PDF saved: downloads/${fileName}`);
-
           } else {
-            console.log("⚠️ Neither download branch detected — taking screenshot for investigation");
+            console.log(
+              "⚠️ Neither download branch detected — taking screenshot for investigation",
+            );
             await page.screenshot({
               path: `screenshots/gst-no-download-btn-${quarter.replace(/\s+/g, "_")}-${month}.png`,
               fullPage: true,
@@ -527,14 +540,20 @@ test.describe("GST Portal Automation", () => {
           const returnsBreadcrumb = page
             .locator('a[href="/returns/auth/dashboard"]:has-text("Returns")')
             .first();
-          await returnsBreadcrumb.waitFor({ state: "visible", timeout: GST_CONFIG.timeout });
+          await returnsBreadcrumb.waitFor({
+            state: "visible",
+            timeout: GST_CONFIG.timeout,
+          });
           await returnsBreadcrumb.click({ timeout: 10000 });
           console.log("✅ Clicked Returns breadcrumb — back to dashboard");
-          await page.waitForLoadState("domcontentloaded", { timeout: GST_CONFIG.timeout });
+          await page.waitForLoadState("domcontentloaded", {
+            timeout: GST_CONFIG.timeout,
+          });
           await page.waitForTimeout(2000);
-
         } catch (error) {
-          console.log(`⚠️ Error processing ${quarter} - ${month}: ${error.message}`);
+          console.log(
+            `⚠️ Error processing ${quarter} - ${month}: ${error.message}`,
+          );
           await page.screenshot({
             path: `screenshots/gst-error-${quarter.replace(/\s+/g, "_")}-${month}.png`,
             fullPage: true,
