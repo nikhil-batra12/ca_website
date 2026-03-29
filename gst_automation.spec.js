@@ -19,6 +19,7 @@ import { test, expect } from "@playwright/test";
 import fs from "fs";
 import path from "path";
 import pdfParse from "pdf-parse";
+import ALL_CREDENTIALS from "./credentials.json" assert { type: "json" };
 
 /**
  * GST Portal Automation
@@ -40,16 +41,12 @@ const GST_CONFIG = {
   timeout: 60000, // 60 seconds default timeout
 };
 
-const Credentials = {
-  username: "",
-  password: "",
-};
-
 test.describe("GST Portal Automation", () => {
-  // Increase timeout to allow for manual operations if needed
-  test.setTimeout(300000); // 5 minutes
+  test.setTimeout(300000); // 5 minutes per client
 
-  test("Login to GST Portal", async ({ page }) => {
+  for (const cred of ALL_CREDENTIALS) {
+  test(`GST Download - ${cred.username}`, async ({ page }) => {
+    const Credentials = cred;
     console.log("🚀 Starting GST Portal Automation");
     console.log(`📄 Navigating to: ${GST_CONFIG.loginUrl}`);
 
@@ -566,8 +563,8 @@ test.describe("GST Portal Automation", () => {
     console.log(
       "⏸️ Test paused - press Resume in Playwright Inspector or Ctrl+C to end",
     );
-    await page.pause(); // Waits indefinitely until manually resumed or stopped
-  });
+  }); // end test
+  } // end for (cred of ALL_CREDENTIALS)
 
   test("Extract Table 4 from GSTR-3B PDF to CSV", async ({}, testInfo) => {
     const candidates = [

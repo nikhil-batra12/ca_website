@@ -3,10 +3,10 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   testDir: ".",
   testMatch: "gst_automation.spec.js",
-  fullyParallel: false,
+  fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 0,
-  workers: 1,
+  workers: 3, // Adjust based on system capacity (5 clients in parallel at a time)
   reporter: "list",
   use: {
     ...devices["Desktop Chrome"],
