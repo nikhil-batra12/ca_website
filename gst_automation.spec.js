@@ -161,37 +161,38 @@ test.describe("GST Portal Automation", () => {
     const captchaVisible = await captchaField.isVisible().catch(() => false);
 
     if (captchaVisible) {
-      console.log("⚠️ CAPTCHA field detected - manual intervention required");
-      console.log("⏸️ Waiting for manual CAPTCHA entry (30 seconds)...");
-      await page.waitForTimeout(10000); // Wait 30 seconds for manual CAPTCHA entry
-      console.log("✅ Continuing after CAPTCHA wait...");
+      console.log("⚠️ CAPTCHA detected — fill it in and click Login manually");
+      console.log("⏳ Waiting for you to fill CAPTCHA and click Login...");
+      // Wait until the page navigates away from the login URL (i.e. Login was clicked)
+      await page.waitForURL((url) => !url.href.includes("/services/login"), {
+        timeout: 300000, // 5 minutes max
+      });
+      console.log("✅ Login detected — continuing automation");
     } else {
-      console.log("📍 No CAPTCHA field found, continuing...");
+      console.log("📍 No CAPTCHA found — clicking Login automatically...");
+
+      // Take a screenshot before login
+      await page.screenshot({
+        path: "screenshots/gst-credentials-filled.png",
+        fullPage: true,
+      });
+
+      // Step 4: Click login button
+      console.log("📋 Step 4: Clicking login button...");
+      const loginButton = page
+        .locator(
+          'button[type="submit"]:has-text("Login"), button.btn-primary:has-text("Login")',
+        )
+        .first();
+      await loginButton.waitFor({
+        state: "visible",
+        timeout: GST_CONFIG.timeout,
+      });
+      await loginButton.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(500);
+      await loginButton.click();
+      console.log("✅ Login button clicked");
     }
-
-    // Take a screenshot before login
-    await page.screenshot({
-      path: "screenshots/gst-credentials-filled.png",
-      fullPage: true,
-    });
-
-    // Step 4: Click login button
-    console.log("📋 Step 4: Clicking login button...");
-    const loginButton = page
-      .locator(
-        'button[type="submit"]:has-text("Login"), button.btn-primary:has-text("Login")',
-      )
-      .first();
-    await loginButton.waitFor({
-      state: "visible",
-      timeout: GST_CONFIG.timeout,
-    });
-    await loginButton.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(500);
-
-    // Click the login button
-    await loginButton.click();
-    console.log("✅ Login button clicked");
 
     // Step 5: Wait for navigation or next page
     console.log("📋 Step 5: Waiting for page navigation...");
