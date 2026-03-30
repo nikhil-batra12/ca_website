@@ -5,10 +5,14 @@
   "scripts": {
     "test": "playwright test --headed",
     "test:gst": "playwright test gst_automation.spec.js --headed",
+    "test:gstr1": "playwright test gstr1_download_automation.spec.js --headed",
     "test:ui": "playwright test --ui"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
     "pdf-parse": "^1.1.1"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16"
   }
 }

@@ -1,0 +1,663 @@
+{
+    "gstin": "07AXMPT1992P1ZD",
+    "fp": "022026",
+    "filing_typ": "M",
+    "gt": 15000000.00,
+    "cur_gt": 5000000.00,
+    "fil_dt": "11-03-2026",
+    "b2b": [
+        {
+            "ctin": "29AABCU9603R1ZX",
+            "inv": [
+                {
+                    "inum": "INV-001",
+                    "idt": "01-02-2026",
+                    "val": 118000.00,
+                    "pos": "29",
+                    "rchrg": "N",
+                    "inv_typ": "R",
+                    "etin": "27AABCU9603R1ZX",
+                    "diff_percent": 65,
+                    "itms": [
+                        {
+                            "num": 1,
+                            "itm_det": {
+                                "rt": 18,
+                                "txval": 100000.00,
+                                "iamt": 18000.00,
+                                "camt": 0,
+                                "samt": 0,
+                                "csamt": 500.00
+                            }
+                        }
+                    ]
+                },
+                {
+                    "inum": "INV-002",
+                    "idt": "05-02-2026",
+                    "val": 59000.00,
+                    "pos": "07",
+                    "rchrg": "Y",
+                    "inv_typ": "SEZWP",
+                    "etin": "",
+                    "diff_percent": 0,
+                    "itms": [
+                        {
+                            "num": 1,
+                            "itm_det": {
+                                "rt": 12,
+                                "txval": 50000.00,
+                                "iamt": 6000.00,
+                                "camt": 0,
+                                "samt": 0,
+                                "csamt": 0
+                            }
+                        },
+                        {
+                            "num": 2,
+                            "itm_det": {
+                                "rt": 5,
+                                "txval": 20000.00,
+                                "iamt": 1000.00,
+                                "camt": 0,
+                                "samt": 0,
+                                "csamt": 0
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "ctin": "27AABCU1234R1ZY",
+            "inv": [
+                {
+                    "inum": "INV-003",
+                    "idt": "10-02-2026",
+                    "val": 236000.00,
+                    "pos": "27",
+                    "rchrg": "N",
+                    "inv_typ": "DE",
+                    "etin": "",
+                    "diff_percent": 0,
+                    "itms": [
+                        {
+                            "num": 1,
+                            "itm_det": {
+                                "rt": 18,
+                                "txval": 200000.00,
+                                "iamt": 0,
+                                "camt": 18000.00,
+                                "samt": 18000.00,
+                                "csamt": 1000.00
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "b2ba": [
+        {
+            "ctin": "29AABCU9603R1ZX",
+            "inv": [
+                {
+                    "oinum": "INV-001-OLD",
+                    "oidt": "01-01-2026",
+                    "inum": "INV-001-REV",
+                    "idt": "01-02-2026",
+                    "val": 124000.00,
+                    "pos": "29",
+                    "rchrg": "N",
+                    "inv_typ": "R",
+                    "etin": "",
+                    "diff_percent": 0,
+                    "itms": [
+                        {
+                            "num": 1,
+                            "itm_det": {
+                                "rt": 18,
+                                "txval": 105000.00,
+                                "iamt": 18900.00,
+                                "camt": 0,
+                                "samt": 0,
+                                "csamt": 0
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "b2cl": [
+        {
+            "pos": "27",
+            "inv": [
+                {
+                    "inum": "INV-B2CL-001",
+                    "idt": "03-02-2026",
+                    "val": 295000.00,
+                    "etin": "",
+                    "diff_percent": 0,
+                    "itms": [
+                        {
+                            "num": 1,
+                            "itm_det": {
+                                "rt": 18,
+                                "txval": 250000.00,
+                                "iamt": 45000.00,
+                                "camt": 0,
+                                "samt": 0,
+                                "csamt": 0
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "b2cla": [
+        {
+            "pos": "27",
+            "inv": [
+                {
+                    "oinum": "INV-B2CL-OLD",
+                    "oidt": "03-01-2026",
+                    "inum": "INV-B2CL-REV",
+                    "idt": "03-02-2026",
+                    "val": 300000.00,
+                    "etin": "",
+                    "diff_percent": 0,
+                    "itms": [
+                        {
+                            "num": 1,
+                            "itm_det": {
+                                "rt": 18,
+                                "txval": 254237.29,
+                                "iamt": 45762.71,
+                                "camt": 0,
+                                "samt": 0,
+                                "csamt": 0
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "b2cs": [
+        {
+            "sply_ty": "INTRA",
+            "pos": "07",
+            "rt": 18,
+            "etin": "",
+            "diff_percent": 0,
+            "txval": 2754009.90,
+            "iamt": 0,
+            "camt": 247860.89,
+            "samt": 247860.89,
+            "csamt": 0
+        },
+        {
+            "sply_ty": "INTER",
+            "pos": "29",
+            "rt": 12,
+            "etin": "27AABCU9603R1ZX",
+            "diff_percent": 0,
+            "txval": 500000.00,
+            "iamt": 60000.00,
+            "camt": 0,
+            "samt": 0,
+            "csamt": 500.00
+        }
+    ],
+    "b2csa": [
+        {
+            "of": "012026",
+            "sply_ty": "INTRA",
+            "pos": "07",
+            "rt": 18,
+            "etin": "",
+            "diff_percent": 0,
+            "txval": 100000.00,
+            "iamt": 0,
+            "camt": 9000.00,
+            "samt": 9000.00,
+            "csamt": 0
+        }
+    ],
+    "cdnr": [
+        {
+            "ctin": "29AABCU9603R1ZX",
+            "nt": [
+                {
+                    "ntty": "C",
+                    "nt_num": "CN-001",
+                    "nt_dt": "15-02-2026",
+                    "val": 11800.00,
+                    "pos": "29",
+                    "rchrg": "N",
+                    "inv_typ": "R",
+                    "diff_percent": 0,
+                    "itms": [
+                        {
+                            "num": 1,
+                            "itm_det": {
+                                "rt": 18,
+                                "txval": 10000.00,
+                                "iamt": 1800.00,
+                                "camt": 0,
+                                "samt": 0,
+                                "csamt": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ntty": "D",
+                    "nt_num": "DN-001",
+                    "nt_dt": "20-02-2026",
+                    "val": 5900.00,
+                    "pos": "29",
+                    "rchrg": "N",
+                    "inv_typ": "R",
+                    "diff_percent": 0,
+                    "itms": [
+                        {
+                            "num": 1,
+                            "itm_det": {
+                                "rt": 18,
+                                "txval": 5000.00,
+                                "iamt": 900.00,
+                                "camt": 0,
+                                "samt": 0,
+                                "csamt": 0
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "cdnra": [
+        {
+            "ctin": "29AABCU9603R1ZX",
+            "nt": [
+                {
+                    "ontty": "C",
+                    "ont_num": "CN-OLD-001",
+                    "ont_dt": "15-01-2026",
+                    "ntty": "C",
+                    "nt_num": "CN-REV-001",
+                    "nt_dt": "15-02-2026",
+                    "val": 12000.00,
+                    "pos": "29",
+                    "rchrg": "N",
+                    "inv_typ": "R",
+                    "diff_percent": 0,
+                    "itms": [
+                        {
+                            "num": 1,
+                            "itm_det": {
+                                "rt": 18,
+                                "txval": 10169.49,
+                                "iamt": 1830.51,
+                                "camt": 0,
+                                "samt": 0,
+                                "csamt": 0
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "cdnur": [
+        {
+            "typ": "B2CL",
+            "ntty": "C",
+            "nt_num": "CN-UR-001",
+            "nt_dt": "18-02-2026",
+            "val": 29500.00,
+            "pos": "27",
+            "diff_percent": 0,
+            "itms": [
+                {
+                    "num": 1,
+                    "itm_det": {
+                        "rt": 18,
+                        "txval": 25000.00,
+                        "iamt": 4500.00,
+                        "camt": 0,
+                        "samt": 0,
+                        "csamt": 0
+                    }
+                }
+            ]
+        }
+    ],
+    "cdnura": [
+        {
+            "typ": "B2CL",
+            "ontty": "C",
+            "ont_num": "CN-UR-OLD-001",
+            "ont_dt": "18-01-2026",
+            "ntty": "C",
+            "nt_num": "CN-UR-REV-001",
+            "nt_dt": "18-02-2026",
+            "val": 30000.00,
+            "pos": "27",
+            "diff_percent": 0,
+            "itms": [
+                {
+                    "num": 1,
+                    "itm_det": {
+                        "rt": 18,
+                        "txval": 25423.73,
+                        "iamt": 4576.27,
+                        "camt": 0,
+                        "samt": 0,
+                        "csamt": 0
+                    }
+                }
+            ]
+        }
+    ],
+    "exp": [
+        {
+            "exp_typ": "WPAY",
+            "inv": [
+                {
+                    "inum": "EXP-001",
+                    "idt": "05-02-2026",
+                    "val": 500000.00,
+                    "sbpcode": "INMAA1",
+                    "sbnum": "SB123456",
+                    "sbdt": "06-02-2026",
+                    "itms": [
+                        {
+                            "rt": 18,
+                            "txval": 500000.00,
+                            "iamt": 90000.00,
+                            "csamt": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "exp_typ": "WOPAY",
+            "inv": [
+                {
+                    "inum": "EXP-002",
+                    "idt": "10-02-2026",
+                    "val": 300000.00,
+                    "sbpcode": "INMAA1",
+                    "sbnum": "SB789012",
+                    "sbdt": "11-02-2026",
+                    "itms": [
+                        {
+                            "rt": 0,
+                            "txval": 300000.00,
+                            "iamt": 0,
+                            "csamt": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "expa": [
+        {
+            "exp_typ": "WPAY",
+            "inv": [
+                {
+                    "oinum": "EXP-OLD-001",
+                    "oidt": "05-01-2026",
+                    "inum": "EXP-REV-001",
+                    "idt": "05-02-2026",
+                    "val": 510000.00,
+                    "sbpcode": "INMAA1",
+                    "sbnum": "SB111111",
+                    "sbdt": "06-02-2026",
+                    "itms": [
+                        {
+                            "rt": 18,
+                            "txval": 510000.00,
+                            "iamt": 91800.00,
+                            "csamt": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "at": [
+        {
+            "pos": "07",
+            "sply_ty": "INTRA",
+            "diff_percent": 0,
+            "itms": [
+                {
+                    "rt": 18,
+                    "ad_amt": 100000.00,
+                    "iamt": 0,
+                    "camt": 9000.00,
+                    "samt": 9000.00,
+                    "csamt": 0
+                }
+            ]
+        }
+    ],
+    "ata": [
+        {
+            "of": "012026",
+            "pos": "07",
+            "sply_ty": "INTRA",
+            "diff_percent": 0,
+            "itms": [
+                {
+                    "rt": 18,
+                    "ad_amt": 50000.00,
+                    "iamt": 0,
+                    "camt": 4500.00,
+                    "samt": 4500.00,
+                    "csamt": 0
+                }
+            ]
+        }
+    ],
+    "txpd": [
+        {
+            "pos": "07",
+            "sply_ty": "INTRA",
+            "diff_percent": 0,
+            "itms": [
+                {
+                    "rt": 18,
+                    "ad_amt": 100000.00,
+                    "iamt": 0,
+                    "camt": 9000.00,
+                    "samt": 9000.00,
+                    "csamt": 0
+                }
+            ]
+        }
+    ],
+    "txpda": [
+        {
+            "of": "012026",
+            "pos": "07",
+            "sply_ty": "INTRA",
+            "diff_percent": 0,
+            "itms": [
+                {
+                    "rt": 18,
+                    "ad_amt": 50000.00,
+                    "iamt": 0,
+                    "camt": 4500.00,
+                    "samt": 4500.00,
+                    "csamt": 0
+                }
+            ]
+        }
+    ],
+    "nil": {
+        "inv": [
+            {
+                "sply_ty": "INTRB2B",
+                "nil_amt": 50000.00,
+                "expt_amt": 20000.00,
+                "ngsup_amt": 10000.00
+            },
+            {
+                "sply_ty": "INTRB2C",
+                "nil_amt": 30000.00,
+                "expt_amt": 15000.00,
+                "ngsup_amt": 5000.00
+            },
+            {
+                "sply_ty": "INTRAB2B",
+                "nil_amt": 25000.00,
+                "expt_amt": 10000.00,
+                "ngsup_amt": 3000.00
+            },
+            {
+                "sply_ty": "INTRAB2C",
+                "nil_amt": 20000.00,
+                "expt_amt": 8000.00,
+                "ngsup_amt": 2000.00
+            }
+        ]
+    },
+    "hsn": {
+        "flag": "N",
+        "hsn_b2b": [
+            {
+                "num": 1,
+                "hsn_sc": "8471",
+                "desc": "Laptops and computers",
+                "uqc": "NOS",
+                "qty": 10,
+                "val": 118000.00,
+                "txval": 100000.00,
+                "rt": 18,
+                "iamt": 18000.00,
+                "camt": 0,
+                "samt": 0,
+                "csamt": 500.00
+            },
+            {
+                "num": 2,
+                "hsn_sc": "6403",
+                "desc": "Footwear",
+                "uqc": "PRS",
+                "qty": 50,
+                "val": 59000.00,
+                "txval": 50000.00,
+                "rt": 12,
+                "iamt": 6000.00,
+                "camt": 0,
+                "samt": 0,
+                "csamt": 0
+            }
+        ],
+        "hsn_b2c": [
+            {
+                "num": 1,
+                "hsn_sc": "9954",
+                "desc": "Construction services",
+                "uqc": "NA",
+                "qty": 0,
+                "val": 3249731.68,
+                "txval": 2754009.90,
+                "rt": 18,
+                "iamt": 0,
+                "camt": 247860.89,
+                "samt": 247860.89,
+                "csamt": 0
+            }
+        ],
+        "chksum": "9a367f1947014d693a7b1879e0987817e9afc74c2dea689c07e011a49750ddf7"
+    },
+    "doc_issue": {
+        "flag": "N",
+        "doc_det": [
+            {
+                "doc_num": 1,
+                "docs": [
+                    {
+                        "num": 1,
+                        "from": "INV-001",
+                        "to": "INV-010",
+                        "totnum": 10,
+                        "cancel": 1,
+                        "net_issue": 9
+                    },
+                    {
+                        "num": 2,
+                        "from": "INV-011",
+                        "to": "INV-020",
+                        "totnum": 10,
+                        "cancel": 0,
+                        "net_issue": 10
+                    }
+                ]
+            },
+            {
+                "doc_num": 2,
+                "docs": [
+                    {
+                        "num": 1,
+                        "from": "CN-001",
+                        "to": "CN-005",
+                        "totnum": 5,
+                        "cancel": 0,
+                        "net_issue": 5
+                    }
+                ]
+            },
+            {
+                "doc_num": 3,
+                "docs": []
+            },
+            {
+                "doc_num": 4,
+                "docs": []
+            },
+            {
+                "doc_num": 5,
+                "docs": []
+            },
+            {
+                "doc_num": 6,
+                "docs": []
+            },
+            {
+                "doc_num": 7,
+                "docs": []
+            },
+            {
+                "doc_num": 8,
+                "docs": []
+            },
+            {
+                "doc_num": 9,
+                "docs": []
+            },
+            {
+                "doc_num": 10,
+                "docs": []
+            },
+            {
+                "doc_num": 11,
+                "docs": []
+            },
+            {
+                "doc_num": 12,
+                "docs": []
+            }
+        ],
+        "chksum": "a8fc5e01e9e4ebd355c568d2348ae93112060dfe5551469bd411b6f90093fc02"
+    }
+}
